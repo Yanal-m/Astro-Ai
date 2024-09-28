@@ -1,7 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "@/lib/prisma";
 import bcryptjs from "bcryptjs";
 
@@ -17,46 +17,43 @@ export const options = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
     CredentialsProvider({
-      type: "credentials",
+      name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "hello@example.com",
-        },
-        password: { label: "Password", type: "password" },
+        email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
+        password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Remove the unused 'req' parameter
-        const { email, password } = credentials;
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
         const user = await prisma.user.findUnique({
           where: {
-            email: email,
-          },
+            email: credentials.email
+          }
         });
 
         if (!user) {
           return null;
         }
 
-        const hashedPassword = user.password;
+        const isPasswordValid = await bcryptjs.compare(credentials.password, user.password);
 
-        // Compare the plain-text password with the hashed password
-        const passwordMatch = await bcryptjs.compare(password, hashedPassword);
-        
-        if (passwordMatch) {
-          return user;
-        } else {
+        if (!isPasswordValid) {
           return null;
         }
-      },
-    }),
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+        };
+      }
+    })
   ],
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/login",
-  },
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 };
