@@ -9,7 +9,7 @@ import { useSession, signOut } from 'next-auth/react'
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
-  const { data: session, status } = useSession()
+  const { status } = useSession()
 
   const navItems = [
     { label: 'Home', path: '/' },

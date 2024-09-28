@@ -3,7 +3,7 @@
 import axios from "axios";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation";
@@ -17,6 +17,7 @@ export default function CreateAccount() {
     const [passwordRepeat, setPasswordRepeat] = useState('');
     const [error, setError] = useState("");
     const router = useRouter();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (password !== passwordRepeat) {
@@ -24,23 +25,24 @@ export default function CreateAccount() {
             return;
         }
         try {
-            const response = await axios.post('/api/users', {
+            await axios.post('/api/users', {
                 name,
                 email,
                 password,
             });
             router.push('/login');
-        } catch (error: unknown) {
-            if ((error as any).response?.status === 400) {
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response?.status === 400) {
                 // Handle 400 Bad Request (email already exists)
                 setError("Email already exists");
             } else {
                 // Handle other errors
-                console.log("Error creating user with account: ", (error as any).response);
+                console.log("Error creating user with account: ", error);
                 setError("An error occurred");
             }
         }
     }
+
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" , backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <Card className="w-full max-w-md bg-white/50 backdrop-blur-md">

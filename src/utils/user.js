@@ -19,7 +19,9 @@ export async function createUserWithAccount({name, email, password}){
             include: {
                 accounts: true,
             }
-        })
+        });
+
+        return newUser; // Return the newly created user
 
     } catch (error){
         console.error('Error creating user with account: ', error);

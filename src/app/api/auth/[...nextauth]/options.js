@@ -26,9 +26,8 @@ export const options = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // const user = { id: "42", name: "Smith", email: "jsmith@example.com", password: "1234" };
-
+      async authorize(credentials) {
+        // Remove the unused 'req' parameter
         const { email, password } = credentials;
 
         const user = await prisma.user.findUnique({
@@ -40,7 +39,6 @@ export const options = {
         if (!user) {
           return null;
         }
-        
 
         const hashedPassword = user.password;
 
