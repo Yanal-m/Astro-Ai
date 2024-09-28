@@ -25,13 +25,28 @@ export default function LoginPage() {
 
 	const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setLoginError('');
+
+		// Input validation
+		if (!email || !password) {
+			setLoginError("Email and password are required");
+			return;
+		}
+
+		// Email validation regex
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email)) {
+			setLoginError("Please enter a valid email address");
+			return;
+		}
+
 		const result = await signIn("credentials", { 
 			email, 
 			password, 
 			redirect: false 
 		});
 		if (result?.error) {
-			setLoginError("Invalid email/password");
+			setLoginError("Invalid email or password");
 		} else {
 			router.push("/");
 		}
@@ -42,7 +57,7 @@ export default function LoginPage() {
 			<Card className="w-full max-w-md bg-white/50 backdrop-blur-md">
 				<CardHeader className="space-y-1">
 					<CardTitle className="text-2xl text-center">Sign in</CardTitle>
-					<CardDescription className="text-white text-center">
+					<CardDescription className="text-center text-gray-700">
 						Enter your email and password to login
 					</CardDescription>
 				</CardHeader>
@@ -56,6 +71,7 @@ export default function LoginPage() {
 								placeholder="m@example.com"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
+								required
 							/>
 						</div>
 						<div className="grid pt-3 gap-2">
@@ -65,6 +81,8 @@ export default function LoginPage() {
 								type="password"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
+								required
+                placeholder="********"
 							/>
 						</div>
 						{loginError && <p className="text-red-500">{loginError}</p>}
@@ -77,7 +95,7 @@ export default function LoginPage() {
 							<span className="w-full" />
 						</div>
 						<div className="relative flex justify-center text-xs uppercase">
-							<span className="bg-background px-2 text-muted-foreground">
+							<span className="bg-background text-gray-700 px-2 text-muted-foreground">
 								Or continue with
 							</span>
 						</div>
@@ -94,7 +112,7 @@ export default function LoginPage() {
 					</div>
 				</CardContent>
 				<CardFooter>
-					<div className="text-sm text-gray-600 text-center w-full">
+					<div className="text-sm text-gray-700 text-center w-full">
 						Don&apos;t have an account?{' '}
 						<Link href="/CreateAccount" className="text-white hover:underline">
 							Sign up

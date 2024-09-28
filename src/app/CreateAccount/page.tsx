@@ -20,10 +20,31 @@ export default function CreateAccount() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError("");
+
+        // Input validation
+        if (!name || !email || !password || !passwordRepeat) {
+            setError("All fields are required");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long");
+            return;
+        }
+
         if (password !== passwordRepeat) {
             setError("Passwords do not match");
             return;
         }
+
+        // Email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setError("Please enter a valid email address");
+            return;
+        }
+
         try {
             await axios.post('/api/users', {
                 name,
@@ -33,10 +54,8 @@ export default function CreateAccount() {
             router.push('/login');
         } catch (error) {
             if (axios.isAxiosError(error) && error.response?.status === 400) {
-                // Handle 400 Bad Request (email already exists)
                 setError("Email already exists");
             } else {
-                // Handle other errors
                 console.log("Error creating user with account: ", error);
                 setError("An error occurred");
             }
@@ -47,62 +66,76 @@ export default function CreateAccount() {
       <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" , backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <Card className="w-full max-w-md bg-white/50 backdrop-blur-md">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-center text-cyan-900">Sign up</CardTitle>
-            <CardDescription className="text-center text-cyan-900">
-              The Cosmos is glad to see you here!
+            <CardTitle className="text-2xl text-center">Create an account</CardTitle>
+            <CardDescription className="text-center">
+              Enter your details below to create your account
             </CardDescription>
-            <p className="text-red-500 text-center">{error}</p>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Name</Label>
-              <Input type="text"
-              value={name} 
-              name="name" 
-              placeholder="Your Name" 
-              onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input type="email"
-              value={email} 
-              name="email" 
-              placeholder="m@example.com" 
-              onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" 
-              value={password} 
-              name="password" 
-              placeholder="********" 
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Repeat Password</Label>
-              <Input id="passwordRepeat" type="password" 
-              value={passwordRepeat} 
-              name="passwordRepeat" 
-              placeholder="********" 
-              onChange={(e) => setPasswordRepeat(e.target.value)}
-              required
-              />
-            </div>
-            <Button className="w-full bg-gray-600 hover:bg-cyan-600" onClick={handleSubmit}>
-            <Mail className="mr-2 h-4 w-4" /> Sign up with Email
-            </Button>
-          </CardContent>
+          <form onSubmit={handleSubmit}>
+            <CardContent className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="John Doe"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="********"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="passwordRepeat">Repeat Password</Label>
+                <Input
+                  id="passwordRepeat"
+                  type="password"
+                  placeholder="********"
+                  value={passwordRepeat}
+                  onChange={(e) => setPasswordRepeat(e.target.value)}
+                  required
+                />
+              </div>
+              {error && <p className="text-red-500">{error}</p>}
+              <Button className="w-full bg-gray-600 hover:bg-cyan-600" type="submit">
+                <Mail className="mr-2 h-4 w-4" /> Sign up with Email
+              </Button>
+            </CardContent>
+          </form>
           <CardFooter>
-            <div className="text-sm text-center w-full">
-              Already have an account?{" "}
-              <Link href="/login" className=" text-cyan-900 hover:underline">
-                Login
+            <p className="text-xs text-center text-gray-700">
+              By clicking continue, you agree to our{" "}
+              <Link href="/terms" className="underline hover:text-blue-600">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href="/privacy" className="underline hover:text-blue-600">
+                Privacy Policy
               </Link>
-            </div>
+              .
+            </p>
           </CardFooter>
         </Card>
       </div>
