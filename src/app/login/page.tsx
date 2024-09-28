@@ -112,7 +112,7 @@ export default function LoginPage() {
 					</div>
 				</CardContent>
 				<CardFooter>
-					<div className="text-sm text-gray-700 text-center w-full">
+					<div className="text-sm text-gray-800 text-center w-full">
 						Don&apos;t have an account?{' '}
 						<Link href="/CreateAccount" className="text-white hover:underline">
 							Sign up
