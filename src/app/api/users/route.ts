@@ -1,6 +1,8 @@
 import { createUserWithAccount, getUserByEmail } from "@/utils/user"; // Import user-related utilities
-import bcryptjs from 'bcryptjs'; // Import bcryptjs instead of bcrypt
+import bcrypt from 'bcryptjs'; // Import bcryptjs instead of bcrypt
 import { NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
 
 export const POST = async (req: Request) => {
     try {
@@ -15,13 +17,13 @@ export const POST = async (req: Request) => {
         }
 
         // Hash the password
-        const hashedPassword = await bcryptjs.hash(password, 10); // Salt round of 10
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create the new user if the email doesn't exist
         const newUser = await createUserWithAccount({
             name,
             email,
-            password: hashedPassword, // Use the hashed password
+            password: hashedPassword,
         });
 
         return NextResponse.json({
