@@ -21,7 +21,7 @@ export async function POST(req: Request) {
           content: `Generate a ${timeframe.toLowerCase()} horoscope for ${sign} focusing on the ${category} aspect of their life. Keep it concise and relevant to the ${category} category.`
         }
       ],
-      max_tokens: 150,
+      max_tokens: 250,
     });
 
     const horoscope = completion.choices[0].message.content;
