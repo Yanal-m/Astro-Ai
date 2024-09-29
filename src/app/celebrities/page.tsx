@@ -41,7 +41,7 @@ const CelebritiesPage = () => {
     <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/stars-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
       <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Celebrities in Your Sign</CardTitle>
+          <CardTitle className="text-xlg font-bold text-center text-cyan-800 capitalize">Celebrities in Your Sign</CardTitle>
           <CardDescription className="text-center text-cyan-900">Check celebrities in your zodiac sign</CardDescription>
         </CardHeader>
         <CardContent>
