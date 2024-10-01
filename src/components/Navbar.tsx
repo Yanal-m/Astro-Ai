@@ -4,9 +4,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Image from 'next/image'
+import { signOut, useSession } from "next-auth/react";
+import { Button } from '@/components/ui/button';
+
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const { data: session }: any = useSession();
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -45,6 +49,33 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
+              <ul className="flex justify-between m-10 item-center">
+              <div className="flex gap-10">
+                {!session ? (
+                  <>
+                    <Link href="/login">
+                      <li>Login</li>
+                    </Link>
+                    <Link href="/register">
+                      <li>Register</li>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <button
+                        onClick={() => {
+                          signOut();
+                        }}
+                        className="p-2 px-5 -mt-4 bg-cyan-600 rounded-full"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                )}
+              </div>
+            </ul>
             </div>
           </div>
           <div className="md:hidden">
@@ -56,7 +87,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -75,7 +105,34 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-        </div>
+            <ul className="flex justify-between m-10 item-center">
+              <div className="flex gap-10">
+                {!session ? (
+                  <>
+                    <Link href="/login">
+                      <li>Login</li>
+                    </Link>
+                    <Link href="/register">
+                      <li>Register</li>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <button
+                        onClick={() => {
+                          signOut();
+                        }}
+                        className="p-2 px-5 -mt-4 bg-cyan-600 rounded-full"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </>
+                )}
+              </div>
+            </ul>
+        </div>  
       )}
     </nav>
   )
