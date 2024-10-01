@@ -1,6 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "no-unused-vars": "off"
+    "rule-name-1": "off",
+    "rule-name-2": "off"
   }
 }
