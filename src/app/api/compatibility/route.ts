@@ -21,7 +21,7 @@ export async function POST(req: Request) {
           content: `Provide a brief compatibility reading for ${sign1} and ${sign2}. Focus on their relationship potential and key areas of harmony or conflict.`
         }
       ],
-      max_tokens: 200,
+      max_tokens: 250,
     });
 
     const compatibility = completion.choices[0].message.content;

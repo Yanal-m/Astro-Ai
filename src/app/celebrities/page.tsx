@@ -38,10 +38,10 @@ const CelebritiesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/zodiac-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
-      <Card className="w-full max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/stars-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Celebrities in Your Sign</CardTitle>
+          <CardTitle className="text-xlg font-bold text-center text-cyan-800 capitalize">Celebrities in Your Sign</CardTitle>
           <CardDescription className="text-center text-cyan-900">Check celebrities in your zodiac sign</CardDescription>
         </CardHeader>
         <CardContent>
@@ -60,15 +60,15 @@ const CelebritiesPage = () => {
             <Button 
               onClick={checkCelebrities} 
               disabled={!sign} 
-              className="w-full bg-gray-600 hover:bg-cyan-600"
+              className="w-full hover:bg-gray-600"
             >
-              Check Celebrities <ArrowRight className="ml-2 h-4 w-4" />
+              Check Compatibility <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
 
             {celebrities && (
                 <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
                     <div className="mt-4 p-4 rounded-md">
-                        <p className=" text-white">{celebrities}</p>
+                        <p className="text-white">{celebrities}</p>
                     </div>
                 </Card>
                     

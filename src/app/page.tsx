@@ -13,6 +13,7 @@ const zodiacSigns = [
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ]
 
+
 const categories = ["General", "Love", "Career", "Health"]
 
 export default function HoroscopeAI() {
@@ -20,7 +21,6 @@ export default function HoroscopeAI() {
   const [timeframe, setTimeframe] = useState("Daily")
   const [category, setCategory] = useState("General")
   const [reading, setReading] = useState("")
-  
 
   const fetchHoroscope = async () => {
     try {
@@ -44,10 +44,9 @@ export default function HoroscopeAI() {
     }
   }
 
-  
   return (
-    <div className="min-h-screen flex-col bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
-      <Card className="w-full max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
+      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Horoscope AI</CardTitle>
           <CardDescription className="text-center text-cyan-900">Discover your cosmic insights powered by AI</CardDescription>
@@ -97,7 +96,8 @@ export default function HoroscopeAI() {
             <Button 
               onClick={fetchHoroscope} 
               disabled={!sign || !category} 
-              className="w-full hover:bg-cyan-600">
+              className="w-full hover:bg-gray-600"
+            >
               Get Your Horoscope <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             

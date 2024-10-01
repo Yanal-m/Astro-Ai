@@ -4,18 +4,15 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Image from 'next/image'
-import { useSession, signOut } from 'next-auth/react'
-
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
-  const { status } = useSession()
 
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Compatibility', path: '/compatibility' },
     { label: 'Celebrities', path: '/celebrities' },
-    { label: 'About Us', path: '/about' }
+    { label: 'About Us', path: '/about' },
   ]
 
   return (
@@ -27,7 +24,7 @@ const Navbar = () => {
               <Image
                 src="/logo-astro1.png"
                 alt="AstroApp"
-                width={180}
+                width={150}
                 height={100}
                 priority
               />
@@ -48,21 +45,6 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              {status === 'authenticated' ? (
-                <button
-                  onClick={() => signOut()}
-                  className="text-white hover:bg-cyan-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Logout
-                </button>
-              ) : (
-                <Link
-                  href="/login"
-                  className="text-white hover:bg-cyan-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Login / Sign Up
-                </Link>
-              )}
             </div>
           </div>
           <div className="md:hidden">
@@ -86,31 +68,12 @@ const Navbar = () => {
                   pathname === item.path
                     ? 'bg-cyan-900 text-white'
                     : 'text-gray-900 hover:bg-cyan-700 hover:text-white'
-                } block px-3 text-center py-2 rounded-md text-base font-medium`}
+                } block px-3 py-2 rounded-md text-base font-medium`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            {status === 'authenticated' ? (
-              <button
-                onClick={() => {
-                  signOut();
-                  setIsOpen(false);
-                }}
-                className="text-gray-900 hover:bg-cyan-700 hover:text-white block px-3 py-2 rounded-md text-base w-full text-center font-medium"
-              >
-                Logout
-              </button>
-            ) : (
-              <Link
-                href="/login"
-                className="text-gray-900 hover:bg-cyan-700 hover:text-white block px-3 py-2 rounded-md text-base text-center font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Login / Sign Up
-              </Link>
-            )}
           </div>
         </div>
       )}

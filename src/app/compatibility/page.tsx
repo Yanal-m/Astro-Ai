@@ -39,8 +39,8 @@ const CompatibilityPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/zodiac-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
-      <Card className="w-full max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/stars-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Zodiac Compatibility</CardTitle>
           <CardDescription className="text-center text-cyan-900">Check the compatibility between two zodiac signs</CardDescription>
@@ -73,7 +73,7 @@ const CompatibilityPage = () => {
             <Button 
               onClick={checkCompatibility} 
               disabled={!sign1 || !sign2} 
-              className="w-full hover:bg-cyan-600"
+              className="w-full hover:bg-gray-600"
             >
               Check Compatibility <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -81,7 +81,7 @@ const CompatibilityPage = () => {
             {compatibility && (
                 <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
                     <div className="mt-4 p-4 rounded-md">
-                        <p className="text-xlg text-white">{compatibility}</p>
+                        <p className="text-white">{compatibility}</p>
                     </div>
                 </Card>
                     

@@ -2,11 +2,13 @@
 import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
+
+
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
-      <Card className="w-full max-w-2xl bg-white/50 backdrop-blur-md">
-        <CardHeader>
+      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
+        <CardHeader className="mt-4"  >
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">The stars welcome you</CardTitle>
           <CardDescription className="text-center text-cyan-900">Discover your cosmic insights powered by AI</CardDescription>
         </CardHeader>

@@ -18,10 +18,10 @@ export async function POST(req: Request) {
         },
         {
           role: "user",
-          content: `Generate a list of 3 famous celebrities who share a horoscope sign with ${sign}. Include a variety of public figures from different industries such as entertainment, sports, politics, and business. For each celebrity, provide their full name, profession, and a brief note on their most notable accomplishments.`
+          content: `Generate a list of famous celebrities who share a horoscope sign with ${sign}. Include a variety of public figures from different industries such as entertainment, sports, politics, and business. For each celebrity, provide their full name, profession, and a brief note on their most notable accomplishments. The list should be in a structured bullet format.`
         }
       ],
-      max_tokens: 200,
+      max_tokens: 250,
     });
 
     const celebrities = completion.choices[0].message.content;
