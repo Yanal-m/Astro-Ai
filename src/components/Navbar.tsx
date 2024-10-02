@@ -24,7 +24,7 @@ const Navbar = () => {
               <Image
                 src="/logo-astro1.png"
                 alt="AstroApp"
-                width={160}
+                width={150}
                 height={100}
                 priority
               />
