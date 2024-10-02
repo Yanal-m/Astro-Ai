@@ -4,15 +4,21 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import Image from 'next/image'
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from '@clerk/nextjs'
+
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: 'Home', path: '/' },
+    { label: 'Horoscope', path: '/horoscope' },
     { label: 'Compatibility', path: '/compatibility' },
-    { label: 'Celebrities', path: '/celebrities' },
-    { label: 'About Us', path: '/about' },
+    { label: 'Celebrities', path: '/celebrities' }
   ]
 
   return (
@@ -30,7 +36,7 @@ const Navbar = () => {
               />
             </a>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden md:block items-center justify-between">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <Link
@@ -46,6 +52,16 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
+          </div>
+          <div className='flex items-center'>
+            <button className='bg-cyan-900 hover:bg-cyan-500 hidden md:block text-white px-3 py-2 rounded-md text-sm font-medium'>
+              <SignedOut>
+              <SignInButton />
+              </SignedOut>
+              <SignedIn>
+              <UserButton />
+              </SignedIn>
+            </button>
           </div>
           <div className="md:hidden">
             <button onClick={() => setIsOpen(!isOpen)} className="text-cyan-700 hover:text-cyan-500">
@@ -74,6 +90,16 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
+          </div>
+          <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
+            <button className='bg-cyan-900 hover:bg-cyan-500 md:hidden text-white px-3 py-2 rounded-md text-sm font-medium'>
+              <SignedOut>
+              <SignInButton />
+              </SignedOut>
+              <SignedIn>
+              <UserButton />
+              </SignedIn>
+            </button>
           </div>
         </div>
       )}
