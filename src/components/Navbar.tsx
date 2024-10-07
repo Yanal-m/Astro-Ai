@@ -18,7 +18,8 @@ const Navbar = () => {
   const navItems = [
     { label: 'Horoscope', path: '/horoscope' },
     { label: 'Compatibility', path: '/compatibility' },
-    { label: 'Celebrities', path: '/celebrities' }
+    { label: 'Celebrities', path: '/celebrities' },
+    { label: 'Fortune', path: '/fortune' }
   ]
 
   return (
