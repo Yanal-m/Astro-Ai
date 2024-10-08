@@ -19,7 +19,8 @@ const Navbar = () => {
     { label: 'Horoscope', path: '/horoscope' },
     { label: 'Compatibility', path: '/compatibility' },
     { label: 'Celebrities', path: '/celebrities' },
-    { label: 'Fortune', path: '/fortune' }
+    { label: 'Fortune', path: '/fortune' },
+    { label: 'Coffee Cup Reading', path: '/coffee-cup-reading' }
   ]
 
   return (
