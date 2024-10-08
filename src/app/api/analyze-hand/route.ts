@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         {
           role: "user",
           content: [
-            { type: "text", text: "Analyze this coffee cup pattern and provide a detailed tasseography reading." },
+            { type: "text", text: "You are a professional palm reader. Analyze this hand pattern and provide a detailed palmistry reading." },
             {
               type: "image_url",
               image_url: {

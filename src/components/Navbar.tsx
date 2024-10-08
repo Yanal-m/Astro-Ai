@@ -20,7 +20,8 @@ const Navbar = () => {
     { label: 'Compatibility', path: '/compatibility' },
     { label: 'Celebrities', path: '/celebrities' },
     { label: 'Fortune', path: '/fortune' },
-    { label: 'Coffee Cup Reading', path: '/coffee-cup-reading' }
+    { label: 'Tasseography', path: '/tasseography' },
+    { label: 'Palmistry', path: '/palmistry' }
   ]
 
   return (
