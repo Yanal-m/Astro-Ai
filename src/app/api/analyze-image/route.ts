@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
     const reading = response.choices[0].message.content;
 
     return NextResponse.json({ reading });
-  } catch (error: any) {
+  } catch (error ) {
     console.error('Error:', error);
     return NextResponse.json({ error: 'An error occurred during your request.' }, { status: 500 });
   }
