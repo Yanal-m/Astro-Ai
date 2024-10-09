@@ -38,14 +38,14 @@ const CelebritiesPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/stars-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
       <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg font-bold text-center text-cyan-800 capitalize">Celebrities in Your Sign</CardTitle>
           <CardDescription className="text-center text-cyan-900">Check celebrities in your zodiac sign</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 mt-6">
             <Select onValueChange={(value) => setSign(value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select your zodiac sign" />
@@ -75,7 +75,7 @@ const CelebritiesPage = () => {
             )}
           </div>
           <div className=" py-4 w-full">
-          <p className="text-xlg text-white p-4 text-center">
+          <p className="text-sm text-center text-cyan-900">
               Discover the celebrities that share your zodiac sign.
           </p>
         </div>

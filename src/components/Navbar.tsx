@@ -57,12 +57,12 @@ const Navbar = () => {
             </div>
           </div>
           <div className='flex items-center'>
-            <button className='bg-cyan-900 hover:bg-cyan-500 hidden md:block text-white px-3 py-2 rounded-md text-sm font-medium'>
+            <button className='hidden md:block text-white text-sm font-medium'>
               <SignedOut>
               <SignInButton />
               </SignedOut>
               <SignedIn>
-              <UserButton />
+              <UserButton/>
               </SignedIn>
             </button>
           </div>

@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
       <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader className="mt-4"  >
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">The stars welcome you</CardTitle>
@@ -32,6 +32,7 @@ const AboutPage = () => {
         </CardContent>
       </Card>
     </div>
+    
   )
 }
 

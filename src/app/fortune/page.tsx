@@ -34,14 +34,14 @@ const FortunePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
       <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Mystical Fortune Teller</CardTitle>
           <CardDescription className="text-center text-cyan-900">Discover your personalized reading based on Tarot and Numerology</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 mt-6">
             <Input
               type="text"
               placeholder="Enter your name"
@@ -73,7 +73,7 @@ const FortunePage = () => {
             )}
           </div>
           <div className="py-4 w-full">
-            <p className="text-sm text-white p-4 text-center">
+            <p className="text-sm text-center text-cyan-900">
               May the mystical forces guide you towards enlightenment and fulfillment.
             </p>
           </div>

@@ -47,7 +47,7 @@ export default function HandReading() {
   };
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{ backgroundImage: "url('/zodiac-bg.jpg')" }}>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
       <Card className="w-full mt-24 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg mt-2 font-bold text-center text-cyan-900 capitalize">See the future in your own hand</CardTitle>
@@ -79,7 +79,7 @@ export default function HandReading() {
         <button
           type="submit"
           disabled={!selectedImage || isLoading}
-          className="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded disabled:opacity-50 mx-auto"
+          className="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 mt-8 px-4 rounded disabled:opacity-50 mx-auto"
         >
           {isLoading ? 'Analyzing...' : 'Get Reading'}
         </button>

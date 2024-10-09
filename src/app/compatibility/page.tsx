@@ -39,7 +39,7 @@ const CompatibilityPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" style={{backgroundImage: "url('/stars-bg.jpg')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
       <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Zodiac Compatibility</CardTitle>
@@ -47,7 +47,7 @@ const CompatibilityPage = () => {
         </CardHeader>
 
         <CardContent>
-          <div className="space-y-4">
+          <div className="space-y-4 mt-6">
             <Select onValueChange={(value) => setSign1(value)}>
               <SelectTrigger>
                 <SelectValue placeholder="Select your zodiac sign" />
@@ -88,7 +88,7 @@ const CompatibilityPage = () => {
             )}
           </div>
           <div className=" py-4 w-full">
-          <p className=" text-white p-4 text-center">
+          <p className="text-sm text-center text-cyan-900">
               Explore the compatibility between different zodiac signs.
           </p>
         </div>
