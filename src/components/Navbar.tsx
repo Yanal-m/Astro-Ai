@@ -21,7 +21,8 @@ const Navbar = () => {
     { label: 'Celebrities', path: '/celebrities' },
     { label: 'Fortune', path: '/fortune' },
     { label: 'Tasseography', path: '/tasseography' },
-    { label: 'Palmistry', path: '/palmistry' }
+    { label: 'Dreams', path: '/dream-interpretation',
+     }
   ]
 
   return (
