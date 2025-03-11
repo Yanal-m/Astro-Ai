@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Card, CardHeader, CardDescription, CardContent } from "@/components/ui/card"
 import { Sparkles } from "lucide-react";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
