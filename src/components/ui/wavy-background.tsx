@@ -24,7 +24,7 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const noise = createNoise3D();
   let w: number,
@@ -56,8 +56,11 @@ export const WavyBackground = ({
     ctx.filter = `blur(${blur}px)`;
     nt = 0;
     window.onresize = function () {
+      if (!ctx) return; 
       w = ctx.canvas.width = window.innerWidth;
+      if (!ctx) return;   
       h = ctx.canvas.height = window.innerHeight;
+      if (!ctx) return; 
       ctx.filter = `blur(${blur}px)`;
     };
     render();
@@ -73,11 +76,15 @@ export const WavyBackground = ({
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {
+      if (!ctx) return; 
       ctx.beginPath();
+      if (!ctx) return;
       ctx.lineWidth = waveWidth || 50;
+      if (!ctx) return; 
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
+        if (!ctx) return; 
         ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
       }
       ctx.stroke();
@@ -87,9 +94,12 @@ export const WavyBackground = ({
 
   let animationId: number;
   const render = () => {
-    ctx.fillStyle = backgroundFill || "black";
-    ctx.globalAlpha = waveOpacity || 0.5;
-    ctx.fillRect(0, 0, w, h);
+    if (!ctx) return;
+     ctx.fillStyle = backgroundFill || "black";
+     if (!ctx) return;
+     ctx.globalAlpha = waveOpacity || 0.5;
+     if (!ctx) return;
+      ctx.fillRect(0, 0, w, h);
     drawWave(5);
     animationId = requestAnimationFrame(render);
   };
