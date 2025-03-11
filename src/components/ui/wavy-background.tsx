@@ -92,7 +92,7 @@ export const WavyBackground = ({
     }
   };
 
-  let animationId: number;
+  let animationId: number = 0;
   const render = () => {
     if (!ctx) return;
      ctx.fillStyle = backgroundFill || "black";
@@ -109,7 +109,7 @@ export const WavyBackground = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [animationId, init]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
