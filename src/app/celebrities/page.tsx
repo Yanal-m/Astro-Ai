@@ -90,7 +90,7 @@ const CelebritiesPage = () => {
           </div>
           <div className=" py-4 w-full">
           <p className="text-sm text-center px-4 text-cyan-100">
-              Discover the celebrities that share your zodiac sign you'll be surprized.
+              Discover the celebrities that share your zodiac sign you&apos;ll be surprized.
           </p>
         </div>
         </CardContent>

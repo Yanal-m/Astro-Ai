@@ -88,7 +88,7 @@ const DreamPage = () => {
           </div>
           <div className="py-4 w-full">
             <p className="text-sm text-center px-4 text-cyan-100">
-            We wish you a meaningful interpretation for your dream, but remember it's not true.
+            We wish you a meaningful interpretation for your dream, but remember it&apos;s not true.
             </p>
           </div>
         </CardContent>
