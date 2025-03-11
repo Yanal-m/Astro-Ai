@@ -5,14 +5,25 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import {Input} from "@/components/ui/input"
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
+
 
 const DreamPage = () => {
   const [dream, setDream] = useState("")
   const [birthday, setBirthday] = useState("")
   const [reading, setReading] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   const fetchDream = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch('/api/dreamology', {
         method: 'POST',
@@ -28,6 +39,7 @@ const DreamPage = () => {
 
       const data = await response.json();
       setReading(data.reading);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching fortune:', error);
       setReading('Sorry, there was an error reading your Dream. Please try again later.');
@@ -35,11 +47,13 @@ const DreamPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4">
-      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex  items-center justify-center p-4">
+      <WavyBackground className="z-0 max-w-4xl mx-auto" >
+      <Card className="w-full  max-w-2xl bg-gradient-to-b from-cyan-500 to-purple-900/85 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Your Ultimate Dream Interpreter</CardTitle>
-          <CardDescription className="text-center text-cyan-900">Discover your personalized reading for your dream</CardDescription>
+          <SparklesText className="text-4xl text-center"  text="Your Dream Interpreter" />
+
+          <CardDescription className="text-center text-slate-900">Discover your personalized reading for your dream</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 mt-6">
@@ -47,6 +61,7 @@ const DreamPage = () => {
               placeholder="Tell us your dream"
               value={dream}
               onChange={(e) => setDream(e.target.value)}
+              className="placeholder:text-slate-700"
             />
             <Input
               type="date"
@@ -56,16 +71,15 @@ const DreamPage = () => {
             <Button 
               onClick={fetchDream} 
               disabled={!dream || !birthday} 
-              className="w-full hover:bg-gray-600"
+              className="w-full bg-cyan-500 hover:bg-purple-500"
             >
-              See what your dream tells you <ArrowRight className="ml-2 h-4 w-4" />
+              {isLoading ? 'Asking the stars...' : 'See what your dream tells you'}
             </Button>
             
             {reading && (
-              <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
+              <Card className="mt-4 bg-gradient-to-b from-cyan-500 to-purple-900">
                 <CardContent className="p-4">
-                  <p className="text-white flex items-center">
-                    <Sparkles className="mr-2 h-5 w-5" />
+                  <p className="text-white font-light text-md flex items-center">
                     {reading}
                   </p>
                 </CardContent>
@@ -73,12 +87,13 @@ const DreamPage = () => {
             )}
           </div>
           <div className="py-4 w-full">
-            <p className="text-sm text-center text-cyan-900">
-            We wish you a meaningful interpretation for your dream.
+            <p className="text-sm text-center px-4 text-cyan-100">
+            We wish you a meaningful interpretation for your dream, but remember it's not true.
             </p>
           </div>
         </CardContent>
       </Card>
+      </ WavyBackground>
     </div>
   )
 }

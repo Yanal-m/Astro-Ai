@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         {
           role: "user",
           content: [
-            { type: "text", text: "You are a professional palm reader. Analyze this hand and provide a detailed interpretation based on the lines seen according to palmistry." },
+            { type: "text", text: "You are a professional palm reader. Analyze this hand and provide a detailed interpretation based on the lines seen according to palmistry. Answer within 200 tokens." },
             {
               type: "image_url",
               image_url: {

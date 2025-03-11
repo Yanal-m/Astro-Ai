@@ -55,9 +55,16 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		backgroundImage: {
+  			'grid-pattern': 'url("/path/to/grid-pattern.png")',
+  			'grid-pattern-light': 'url("/path/to/grid-pattern-light.png")'
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    
+  ],
 };
 export default config;

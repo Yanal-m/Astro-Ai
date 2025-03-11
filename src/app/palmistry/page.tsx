@@ -5,6 +5,15 @@ import axios from 'axios';
 import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Sparkles } from "lucide-react";
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
+
 export default function HandReading() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -48,9 +57,10 @@ export default function HandReading() {
 
   return (
     <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
-      <Card className="w-full mt-24 max-w-2xl bg-white/50 backdrop-blur-md">
+      <WavyBackground className="z-0 max-w-4xl mx-auto" >
+      <Card className="w-full mt-24 max-w-2xl bg-gradient-to-b from-cyan-500 to-purple-900/85 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg mt-2 font-bold text-center text-cyan-900 capitalize">See the future in your own hand</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center text-cyan-100 capitalize">See the future in your own hand</CardTitle>
           <CardDescription className="text-center text-cyan-900">Discover your future in your hand lines</CardDescription>
         </CardHeader>
         <CardContent>
@@ -79,15 +89,15 @@ export default function HandReading() {
         <button
           type="submit"
           disabled={!selectedImage || isLoading}
-          className="bg-cyan-700 hover:bg-cyan-900 text-white font-bold py-2 mt-8 px-4 rounded disabled:opacity-50 mx-auto"
+          className=" bg-cyan-500 hover:bg-purple-500 text-white font-bold py-2 mt-8 px-4 rounded disabled:opacity-50 mx-auto"
         >
           {isLoading ? 'Analyzing...' : 'Get Reading'}
         </button>
       </form>
       {reading && (
-        <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
+        <Card className="bg-gradient-to-b from-cyan-500 to-purple-900">
         <CardContent className="p-4">
-          <p className="text-white flex items-center">
+          <p className="text-md font-light text-white flex items-center">
             <Sparkles className="mr-2 h-5 w-5" />
             {reading}
           </p>
@@ -97,6 +107,7 @@ export default function HandReading() {
     </div>
     </CardContent>
     </Card>
+    </ WavyBackground>
     </div>
   );
 }

@@ -4,7 +4,15 @@ import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowRight } from "lucide-react"
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
+
 
 const zodiacSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
@@ -14,8 +22,11 @@ const zodiacSigns = [
 const CelebritiesPage = () => {
   const [sign, setSign] = useState("")
   const [celebrities, setCelebrities] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const checkCelebrities = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch('/api/celebrities', {
         method: 'POST',
@@ -31,6 +42,7 @@ const CelebritiesPage = () => {
 
       const data = await response.json();
       setCelebrities(data.celebrities);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching celebrities:', error);
       setCelebrities('Failed to get celebrities. Please try again.');
@@ -39,10 +51,12 @@ const CelebritiesPage = () => {
 
   return (
     <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
-      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
+      <WavyBackground className="z-0 max-w-4xl mx-auto" >
+      <Card className="w-full max-w-2xl bg-gradient-to-b from-cyan-500 to-purple-900/85 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-800 capitalize">Celebrities in Your Sign</CardTitle>
-          <CardDescription className="text-center text-cyan-900">Check celebrities in your zodiac sign</CardDescription>
+          <SparklesText className="text-4xl text-center"  text="Celebrities Like You" />
+
+          <CardDescription className="text-center text-slate-900">Check celebrities in your zodiac sign</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 mt-6">
@@ -60,14 +74,14 @@ const CelebritiesPage = () => {
             <Button 
               onClick={checkCelebrities} 
               disabled={!sign} 
-              className="w-full hover:bg-gray-600"
+              className="w-full bg-cyan-500 hover:bg-purple-500"
             >
-              Check Compatibility <ArrowRight className="ml-2 h-4 w-4" />
+             {isLoading ? 'Asking the stars...' : 'Check Celebrities'}
             </Button>
 
             {celebrities && (
-                <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
-                    <div className="mt-4 p-4 rounded-md">
+                <Card className="bg-gradient-to-b from-cyan-500 to-purple-900">
+                    <div className="text-md font-light p-4 rounded-md">
                         <p className="text-white">{celebrities}</p>
                     </div>
                 </Card>
@@ -75,12 +89,13 @@ const CelebritiesPage = () => {
             )}
           </div>
           <div className=" py-4 w-full">
-          <p className="text-sm text-center text-cyan-900">
-              Discover the celebrities that share your zodiac sign.
+          <p className="text-sm text-center px-4 text-cyan-100">
+              Discover the celebrities that share your zodiac sign you'll be surprized.
           </p>
         </div>
         </CardContent>
       </Card>
+      </ WavyBackground>
     </div>
   )
 }

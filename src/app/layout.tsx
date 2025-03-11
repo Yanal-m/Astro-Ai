@@ -15,8 +15,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${inter.className} relative min-h-screen`}>
-          <div className="animated-gradient absolute inset-0 z-[-1]"></div>
+        <body className={`${inter.className} bg-black relative overflow-x-hidden  min-h-screen`}>
           <Navbar />
           {children}
           <Footer />

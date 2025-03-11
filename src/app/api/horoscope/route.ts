@@ -18,10 +18,10 @@ export async function POST(req: Request) {
         },
         {
           role: "user",
-          content: `Generate a ${timeframe.toLowerCase()} horoscope for ${sign} focusing on the ${category} aspect of their life. Keep it concise and relevant to the ${category} category.`
+          content: `Generate a ${timeframe.toLowerCase()} horoscope for ${sign} focusing on the ${category} aspect of their life. Keep it concise and relevant to the ${category} category. Answer within 200 tokens.`
         }
       ],
-      max_tokens: 250,
+      max_tokens: 200,
     });
 
     const horoscope = completion.choices[0].message.content;

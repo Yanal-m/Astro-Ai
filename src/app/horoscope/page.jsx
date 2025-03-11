@@ -5,8 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight, Sparkles } from 'lucide-react'
 import { cn } from "@/lib/utils"  // Make sure this import is present
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
+
 
 const zodiacSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
@@ -21,9 +29,12 @@ export default function HoroscopeAI() {
   const [timeframe, setTimeframe] = useState("Daily")
   const [category, setCategory] = useState("General")
   const [reading, setReading] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const fetchHoroscope = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('/api/horoscope', {
         method: 'POST',
         headers: {
@@ -38,6 +49,7 @@ export default function HoroscopeAI() {
 
       const data = await response.json();
       setReading(data.horoscope);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching horoscope:', error);
       setReading('Sorry, there was an error generating your horoscope. Please try again later.');
@@ -45,11 +57,13 @@ export default function HoroscopeAI() {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
-      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen flex items-center justify-center p-4 z-0" >
+      <WavyBackground className="z-0 max-w-4xl mx-auto " >
+      <Card className="w-full  max-w-2xl bg-gradient-to-b from-cyan-500 to-purple-900/85 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Horoscope AI</CardTitle>
-          <CardDescription className="text-center text-cyan-900">Discover your cosmic insights powered by AI</CardDescription>
+          <SparklesText className="text-4xl text-center"  text="Horoscope AI" />
+
+          <CardDescription className="text-center text-slate-900">Discover your cosmic insights powered by AI</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 mt-6">
@@ -96,16 +110,15 @@ export default function HoroscopeAI() {
             <Button 
               onClick={fetchHoroscope} 
               disabled={!sign || !category} 
-              className="w-full hover:bg-gray-600"
+              className="w-full text-white bg-cyan-500 hover:bg-purple-500"
             >
-              Get Your Horoscope <ArrowRight className="ml-2 h-4 w-4" />
+              {isLoading ? 'Searching the stars...' : 'Get Your Horoscope'}
             </Button>
             
             {reading && (
-              <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
+              <Card className="bg-gradient-to-b from-cyan-500 to-purple-900">
                 <CardContent className="p-4">
-                  <p className="text-white flex items-center">
-                    <Sparkles className="mr-2 h-5 w-5" />
+                  <p className="text-md font-light text-white flex items-center">
                     {reading}
                   </p>
                 </CardContent>
@@ -113,12 +126,13 @@ export default function HoroscopeAI() {
             )}
           </div>
           <div className=" py-4 w-full">
-          <p className="text-sm text-center text-cyan-900">
+          <p className="text-sm text-center px-4 text-cyan-100">
               May the stars guide you to happiness and fulfillment in your journey through life.
           </p>
         </div>
         </CardContent>
       </Card>
+      </ WavyBackground>
     </div>
   )
 }

@@ -20,10 +20,10 @@ export async function POST(req: Request) {
           role: "user",
           content: `Generate a dream interpretation for ${dream}, born on ${birthday}. Based on the dream details and birthdate provided, offer a personalized interpretation that explores the possible meanings behind key symbols, emotions, and scenarios in the dream. Analyze the significance of these elements within the context of the user's life stage and personality traits associated with their birthdate.
 
-If the dream features common symbols (e.g., flying, water, animals), explain both traditional interpretations and how these might uniquely apply to the user's experience. Conclude with a thoughtful perspective on how the dream might reflect the user's current emotions, desires, or challenges, and suggest any constructive actions or reflections they may benefit from in waking life.`
+If the dream features common symbols (e.g., flying, water, animals), explain both traditional interpretations and how these might uniquely apply to the user's experience. Conclude with a thoughtful perspective on how the dream might reflect the user's current emotions, desires, or challenges, and suggest any constructive actions or reflections they may benefit from in waking life. Answer within 200 tokens.`
         }
       ],
-      max_tokens: 300,
+      max_tokens: 200,
     });
 
     const reading = completion.choices[0].message.content;

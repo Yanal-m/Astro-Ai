@@ -4,7 +4,15 @@ import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowRight } from "lucide-react"
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
+
 
 const zodiacSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
@@ -15,9 +23,12 @@ const CompatibilityPage = () => {
   const [sign1, setSign1] = useState("")
   const [sign2, setSign2] = useState("")
   const [compatibility, setCompatibility] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  
 
   const checkCompatibility = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('/api/compatibility', {
         method: 'POST',
         headers: {
@@ -32,6 +43,7 @@ const CompatibilityPage = () => {
 
       const data = await response.json();
       setCompatibility(data.compatibility);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching compatibility:', error);
       setCompatibility('Failed to get compatibility. Please try again.');
@@ -39,11 +51,12 @@ const CompatibilityPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" >
-      <Card className="w-full mt-16 max-w-2xl bg-white/50 backdrop-blur-md">
+    <div className="min-h-screen flex items-center justify-center p-4" >
+      <WavyBackground className="z-0 max-w-4xl mx-auto" >
+      <Card className="w-full max-w-2xl bg-gradient-to-b from-cyan-500 to-purple-900/85 backdrop-blur-md">
         <CardHeader>
-          <CardTitle className="text-xlg font-bold text-center text-cyan-900 capitalize">Zodiac Compatibility</CardTitle>
-          <CardDescription className="text-center text-cyan-900">Check the compatibility between two zodiac signs</CardDescription>
+          <SparklesText className="text-4xl text-center"  text="Zodiac Compatibility" />
+          <CardDescription className="text-center text-slate-900">Check the compatibility between two zodiac signs</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -73,27 +86,28 @@ const CompatibilityPage = () => {
             <Button 
               onClick={checkCompatibility} 
               disabled={!sign1 || !sign2} 
-              className="w-full hover:bg-gray-600"
+              className="w-full  bg-cyan-500 hover:bg-purple-500"
             >
-              Check Compatibility <ArrowRight className="ml-2 h-4 w-4" />
+              {isLoading ? 'Asking the stars...' : 'Check Compatibility'}
             </Button>
 
             {compatibility && (
-                <Card className="mt-4 bg-gradient-to-r from-cyan-500 via-rose-400 to-cyan-700">
-                    <div className="mt-4 p-4 rounded-md">
-                        <p className="text-white">{compatibility}</p>
+                <Card className="bg-gradient-to-b from-cyan-500 to-purple-900">
+                    <div className="p-4 rounded-md">
+                        <p className="text-md font-light text-white">{compatibility}</p>
                     </div>
                 </Card>
                     
             )}
           </div>
           <div className=" py-4 w-full">
-          <p className="text-sm text-center text-cyan-900">
-              Explore the compatibility between different zodiac signs.
+          <p className="text-sm text-center px-4 text-white">
+              Explore the compatibility between different zodiac signs, find your match.
           </p>
         </div>
         </CardContent>
       </Card>
+      </ WavyBackground>
     </div>
   )
 }

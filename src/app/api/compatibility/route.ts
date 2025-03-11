@@ -18,10 +18,10 @@ export async function POST(req: Request) {
         },
         {
           role: "user",
-          content: `Provide a brief compatibility reading for ${sign1} and ${sign2}. Focus on their relationship potential and key areas of harmony or conflict.`
+          content: `Provide a brief compatibility reading for ${sign1} and ${sign2}. Focus on their relationship potential and key areas of harmony or conflict. Answer within 200 tokens.`
         }
       ],
-      max_tokens: 250,
+      max_tokens: 200,
     });
 
     const compatibility = completion.choices[0].message.content;

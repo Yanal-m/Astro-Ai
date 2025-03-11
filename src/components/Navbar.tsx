@@ -3,13 +3,19 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import Image from 'next/image'
 import {
   SignedIn,
   SignedOut,
   SignInButton,
   UserButton
 } from '@clerk/nextjs'
+import { SparklesText } from "@/components/ui/sparkles-text"
+
+
+
+export function SparklesTextDemo() {
+  return <SparklesText text="Magic UI" />;
+}
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -31,25 +37,19 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <a href="/">
-              <Image
-                src="/logo-astro1.png"
-                alt="AstroApp"
-                width={150}
-                height={100}
-                priority
-              />
+            <SparklesText className="text-3xl text-center mt-2 text-white"  text="AstroAI" />
             </a>
           </div>
           <div className="hidden md:block items-center justify-between">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex z-16 items-baseline space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   href={item.path}
                   className={`${
                     pathname === item.path
-                      ? 'bg-cyan-700 text-white'
-                      : 'text-white hover:bg-cyan-700 hover:text-white'
+                      ? 'bg-gradient-to-b from-cyan-500 to-purple-900 text-white'
+                      : 'text-white hover:bg-cyan-500 hover:text-white'
                   } px-3 py-2 rounded-md text-sm font-medium`}
                 >
                   {item.label}

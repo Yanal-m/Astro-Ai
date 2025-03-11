@@ -14,14 +14,14 @@ export async function POST(req: Request) {
       messages: [
         {
           role: "system",
-          content: "You are a mystical fortune teller skilled in numerology and tarot reading. Provide a three-paragraph reading based on the user's name and birthday."
+          content: "You are a mystical fortune teller skilled in numerology and tarot reading. Provide a three-paragraph reading based on the user's name and birthday. Answer within 150 tokens. "
         },
         {
           role: "user",
-          content: `Generate a fortune reading for ${name}, born on ${birthday}. First paragraph: Analyze their personality based on numerology. Second paragraph: Perform a three-card tarot reading for past, present, and future. Third paragraph: Provide a mantra and guidance for achieving their desires.`
+          content: `Generate a fortune reading for ${name}, born on ${birthday}. First paragraph: Analyze their personality based on numerology. Second paragraph: Perform a three-card tarot reading for past, present, and future. Third paragraph: Provide a mantra and guidance for achieving their desires. Answer strictly within 150 tokens.`
         }
       ],
-      max_tokens: 500,
+      max_tokens: 150,
     });
 
     const reading = completion.choices[0].message.content;
