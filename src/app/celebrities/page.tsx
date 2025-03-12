@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import type { NextPage } from 'next'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -19,13 +20,13 @@ const zodiacSigns = [
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ]
 
-const CelebritiesPage = () => {
-  const [sign, setSign] = useState("")
-  const [celebrities, setCelebrities] = useState("")
-  const [isLoading, setIsLoading] = useState(false);
+const CelebritiesPage: NextPage = () => {
+  const [sign, setSign] = useState<string>("")
+  const [celebrities, setCelebrities] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
-  const checkCelebrities = async () => {
+  const checkCelebrities = async (): Promise<void> => {
     setIsLoading(true);
     try {
       const response = await fetch('/api/celebrities', {
@@ -42,10 +43,11 @@ const CelebritiesPage = () => {
 
       const data = await response.json();
       setCelebrities(data.celebrities);
-      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching celebrities:', error);
       setCelebrities('Failed to get celebrities. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   }
 
