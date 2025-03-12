@@ -9,12 +9,6 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
 
 
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
-
 const DreamPage = () => {
   const [dream, setDream] = useState("")
   const [birthday, setBirthday] = useState("")

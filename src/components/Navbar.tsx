@@ -11,12 +11,6 @@ import {
 } from '@clerk/nextjs'
 import { SparklesText } from "@/components/ui/sparkles-text"
 
-
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
 const Navbar = () => {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)

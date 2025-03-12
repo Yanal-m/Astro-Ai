@@ -10,12 +10,6 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
 
 
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
-
 const zodiacSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"

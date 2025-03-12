@@ -5,11 +5,6 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
 
 
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
 const AboutPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center  p-4 ">

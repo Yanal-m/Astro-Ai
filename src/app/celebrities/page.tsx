@@ -9,12 +9,6 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
 
 
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
-
 const zodiacSigns = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
@@ -92,7 +86,7 @@ const CelebritiesPage: NextPage = () => {
           </div>
           <div className=" py-4 w-full">
           <p className="text-sm text-center px-4 text-cyan-100">
-              Discover the celebrities that share your zodiac sign you&apos;ll be surprized.
+              Discover the celebrities that share your zodiac sign you&apos;ll be surprised.
           </p>
         </div>
         </CardContent>
