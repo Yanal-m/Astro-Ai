@@ -7,12 +7,6 @@ import { Card, CardHeader, CardDescription, CardContent } from "@/components/ui/
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { SparklesText } from "@/components/ui/sparkles-text"
 
-
-
-export function SparklesTextDemo() {
-  return <SparklesText text="Magic UI" />;
-}
-
 export default function CoffeeCupReading() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
