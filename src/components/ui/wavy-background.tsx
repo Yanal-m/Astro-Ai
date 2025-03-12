@@ -83,7 +83,7 @@ export const WavyBackground = ({
       if (!ctx) return; 
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
-        let y = noise(x / 800, 0.3 * i, nt) * 100;
+        const y = noise(x / 800, 0.3 * i, nt) * 100;
         if (!ctx) return; 
         ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
       }
