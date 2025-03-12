@@ -83,7 +83,7 @@ export const WavyBackground = ({
       if (!ctx) return; 
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
+        let y = noise(x / 800, 0.3 * i, nt) * 100;
         if (!ctx) return; 
         ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
       }
@@ -92,7 +92,7 @@ export const WavyBackground = ({
     }
   };
 
-  let animationId: number = 0;
+  const animationIdRef = useRef<number>(0);
   const render = () => {
     if (!ctx) return;
      ctx.fillStyle = backgroundFill || "black";
@@ -101,15 +101,15 @@ export const WavyBackground = ({
      if (!ctx) return;
       ctx.fillRect(0, 0, w, h);
     drawWave(5);
-    animationId = requestAnimationFrame(render);
+    animationIdRef.current = requestAnimationFrame(render);
   };
 
   useEffect(() => {
     init();
     return () => {
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(animationIdRef.current);
     };
-  }, [animationId, init]);
+  }, [init]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
